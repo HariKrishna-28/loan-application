@@ -62,18 +62,23 @@ export default function Home() {
             <p className="font-lg font-bold">
               Accounting provider details
             </p>
+
             <select
               onChange={(e) => setProvider(e.target.value)}
-              required className="select select-bordered w-[350px]">
-              <option disabled selected>Choose accounting provider</option>
-              {
-                accountingProviders.map((provider: string, index: number) => {
-                  return <option key={index} value={provider}>
-                    {provider}
-                  </option>
-                })
-              }
+              required
+              value={provider}
+              className="select select-bordered w-[350px]"
+            >
+              <option disabled value="">
+                Choose accounting provider
+              </option>
+              {accountingProviders.map((provider: string, index: number) => (
+                <option key={index} value={provider}>
+                  {provider}
+                </option>
+              ))}
             </select>
+
           </div>
           <button type="submit" className="btn btn-neutral mt-3">
             Request balance sheet
