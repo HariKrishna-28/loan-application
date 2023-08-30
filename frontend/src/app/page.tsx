@@ -19,9 +19,9 @@ export default function Home() {
             Business details
           </p>
           <div className="flex flex-col gap-3 mt-3">
-            <input type="text" placeholder="Business name" className="input input-bordered w-[350px]" />
-            <input type="text" placeholder="Year established" className="input input-bordered w-[350px]" />
-            <input type="text" placeholder="Profit/loss summary" className="input input-bordered w-[350px]" />
+            <input type="text" required placeholder="Business name" className="input input-bordered w-[350px]" />
+            <input type="text" required placeholder="Year established" className="input input-bordered w-[350px]" />
+            <input type="text" required placeholder="Profit/loss summary" className="input input-bordered w-[350px]" />
             <div className="flex flex-row items-center gap-1">
               <label htmlFor="profit-loss">Profit</label>
               <input type="checkbox" id="profit-loss" className="checkbox" />
@@ -30,7 +30,7 @@ export default function Home() {
             <p className="font-lg font-bold">
               Accounting provider details
             </p>
-            <select className="select select-bordered w-[350px]">
+            <select required className="select select-bordered w-[350px]">
               <option disabled selected>Choose accounting provider</option>
               {
                 accountingProviders.map((provider: string, index: number) => {
@@ -41,7 +41,7 @@ export default function Home() {
               }
             </select>
           </div>
-          <button className="btn btn-neutral mt-3">
+          <button type="submit" className="btn btn-neutral mt-3">
             Request balance sheet
           </button>
         </form>
