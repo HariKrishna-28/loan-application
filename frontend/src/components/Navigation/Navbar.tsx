@@ -2,15 +2,17 @@ import React from 'react'
 
 
 const Navbar = () => {
+
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-200">
             <div className="flex-1">
-                <a className="btn btn-ghost normal-case text-xl">
+                <a className="btn btn-ghost normal-case font-bold text-2xl">
                     Loan application
                 </a>
             </div>
             <div className="flex-none">
-                <ul className="menu menu-horizontal px-1">
+
+                {/* <ul className="menu menu-horizontal px-1">
                     <li><a>Link</a></li>
                     <li>
                         <details>
@@ -23,7 +25,7 @@ const Navbar = () => {
                             </ul>
                         </details>
                     </li>
-                </ul>
+                </ul> */}
             </div>
         </div>
     )
