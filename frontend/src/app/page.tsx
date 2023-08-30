@@ -44,11 +44,11 @@ export default function Home() {
               className="input input-bordered w-[350px]" />
 
             <input
-              type="text"
+              type="number"
               onChange={(e) => setProfitSummary(e.target.value)}
               required
               placeholder="Profit/loss summary"
-              className="input input-bordered w-[350px]" />
+              className={isProfit ? 'input input-bordered w-[350px] text-green-600' : 'input input-bordered w-[350px] text-red-600'} />
 
             <div className="flex flex-row items-center gap-1">
               <label htmlFor="profit-loss">Profit</label>

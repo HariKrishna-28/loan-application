@@ -4,9 +4,9 @@ import React from 'react'
 const Navbar = () => {
 
     return (
-        <div className="navbar bg-base-200">
+        <div className="navbar bg-neutral">
             <div className="flex-1">
-                <a className="btn btn-ghost normal-case font-bold text-2xl">
+                <a className="btn btn-ghost text-white normal-case font-bold text-2xl">
                     Loan application
                 </a>
             </div>
