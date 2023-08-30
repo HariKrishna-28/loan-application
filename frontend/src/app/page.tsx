@@ -32,6 +32,7 @@ export default function Home() {
               type="text"
               onChange={(e) => setName(e.target.value)}
               required
+              autoFocus
               placeholder="Business name"
               className="input input-bordered w-[350px]" />
 
