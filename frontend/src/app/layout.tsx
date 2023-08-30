@@ -1,3 +1,4 @@
+import { Navbar } from '@/components'
 import './globals.css'
 import type { Metadata } from 'next'
 
@@ -15,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body data-theme="dracula" >
+        <Navbar />
         {children}
       </body>
     </html>
