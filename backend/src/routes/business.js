@@ -26,4 +26,15 @@ router.post("/new", async (req, res) => {
   }
 });
 
+router.get("/:userEmail", async (req, res) => {
+  try {
+    const data = await Business.find({
+      "userData.email": req.params.userEmail,
+    });
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+});
+
 module.exports = router;
