@@ -5,14 +5,14 @@ const userSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
-      unique: true,
       max: 50,
+      unique: true,
     },
     email: {
       type: String,
       required: true,
-      unique: true,
       max: 50,
+      unique: true,
     },
     applicationData: {
       type: Array,

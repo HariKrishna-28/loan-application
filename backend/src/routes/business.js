@@ -1,12 +1,25 @@
-const Business = require("../models/Business");
-
 const router = require("express").Router();
+
+const Business = require("../models/Business");
+const User = require("../models/User");
 
 router.post("/new", async (req, res) => {
   try {
-    const { name, yearEst, profitLossSummary } = req.body;
-    const business = new Business({ name, yearEst, profitLossSummary });
-    const response = await business.save();
+    const { userData } = req.body;
+    // check for user
+    let user = await User.findOne({ email: userData.email });
+
+    // initialise new user if they don't exist
+    if (user === null) {
+      const newUser = new User(userData);
+      user = await newUser.save();
+    }
+
+    const businessRes = new Business(req.body);
+    const response = await businessRes.save();
+    await user.updateOne({
+      $push: { applicationData: response._id },
+    });
     res.status(200).json(response);
   } catch (error) {
     res.status(500).json(error.message);

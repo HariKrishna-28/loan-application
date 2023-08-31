@@ -18,13 +18,13 @@ const businessSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    ownerData: {
-      name: {
+    userData: {
+      email: {
         type: String,
         required: true,
         max: 50,
       },
-      email: {
+      name: {
         type: String,
         required: true,
         max: 50,
