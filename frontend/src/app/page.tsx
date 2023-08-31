@@ -1,6 +1,8 @@
 "use client"
 
+import { REGISTER_LOAN } from "@/api/LoanAPI"
 import { accountingProviders } from "@/components/Constants/AccountingProviderOptions"
+import { BusinessType } from "@/components/types/Business"
 import { useState } from "react"
 
 export default function Home() {
@@ -9,12 +11,31 @@ export default function Home() {
   const [profitSummary, setProfitSummary] = useState<string>("")
   const [isProfit, setIsProfit] = useState(true)
   const [provider, setProvider] = useState<string>("")
+  const [userName, setuserName] = useState<string>("")
+  const [email, setEmail] = useState<string>("")
 
+  const initialiseBusiniess = async () => {
+    try {
+      const data: BusinessType = {
+        name: name,
+        yearEst: parseInt(year),
+        profitLossSummary: isProfit ? parseInt(profitSummary) : -parseInt(profitSummary),
+        userData: {
+          name: userName,
+          email: email
+        }
+      }
+      const res = await REGISTER_LOAN(data)
+      console.log(res.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault()
-    console.log(name, year, profitSummary, isProfit, provider)
+    initialiseBusiniess()
   }
 
 
@@ -24,10 +45,28 @@ export default function Home() {
       {/* form content */}
       <div className="flex flex-col p-3 gap-2 items-center mt-5 justify-center w-full">
         <form onSubmit={handleSubmit}>
-          <p className="font-lg font-bold">
-            Business details
-          </p>
-          <div className="flex flex-col gap-3 mt-3">
+          <div className="flex flex-col gap-3">
+            <p className="font-lg font-bold">
+              User details
+            </p>
+            <input
+              type="text"
+              onChange={(e) => setuserName(e.target.value)}
+              required
+              autoFocus
+              placeholder="User name"
+              className="input input-bordered w-[350px]" />
+
+            <input
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder="Email"
+              className="input input-bordered w-[350px]" />
+
+            <p className="font-lg font-bold">
+              Business details
+            </p>
             <input
               type="text"
               onChange={(e) => setName(e.target.value)}

@@ -1,5 +1,9 @@
 export interface BusinessType {
   name: string;
   yearEst: number;
-  profitOrLoss: number;
+  profitLossSummary: number;
+  userData: {
+    name: string;
+    email: string;
+  };
 }
