@@ -18,6 +18,18 @@ const businessSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    ownerData: {
+      name: {
+        type: String,
+        required: true,
+        max: 50,
+      },
+      email: {
+        type: String,
+        required: true,
+        max: 50,
+      },
+    },
   },
   { timestamps: true }
 );

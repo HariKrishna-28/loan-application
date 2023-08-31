@@ -4,6 +4,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 
 const businessRoute = require("./src/routes/business");
+const userRouter = require("./src/routes/users");
 
 const app = express();
 app.use(cors());
@@ -18,6 +19,7 @@ app.get("/", (_, res) => {
 });
 
 app.use("/api/business", businessRoute);
+app.use("/api/user", userRouter);
 
 app.listen(process.env.PORT || 5000, () => {
   console.log("Server up");
