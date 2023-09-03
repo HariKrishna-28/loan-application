@@ -1,5 +1,7 @@
 const router = require("express").Router();
 
+// simulates the decision engine
+// Processess the balance sheet data and gives it a preassessment score
 router.post("/", async (req, res) => {
   try {
     // balance sheet that is received from the accounting engine

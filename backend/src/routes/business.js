@@ -3,6 +3,7 @@ const router = require("express").Router();
 const Business = require("../models/Business");
 const User = require("../models/User");
 
+// creates new business
 router.post("/new", async (req, res) => {
   try {
     const { userData } = req.body;
@@ -26,6 +27,7 @@ router.post("/new", async (req, res) => {
   }
 });
 
+// gets all business and application data based on useremail
 router.get("/:userEmail", async (req, res) => {
   try {
     const data = await Business.find({

@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const generateFakeData = require("../utils/FakeBalanceSheetData");
 const Business = require("../models/Business");
-const mongoose = require("mongoose");
-const ObjectId = mongoose.Types.ObjectId;
 
+// simulates the functioning of accounting provider
+// generates a random balance sheet
 router.post("/balance-sheet", async (req, res) => {
   try {
     const AccountingProviderData = generateFakeData();
@@ -11,7 +11,7 @@ router.post("/balance-sheet", async (req, res) => {
     const { name, email, businessId } = req.body;
 
     const business = await Business.findById(businessId);
-
+    // check to make sure that only the owner of the business can access the balance sheet
     if (business.userData.email !== email || business.userData.name !== name) {
       res.status(404).json("not yours");
     } else {

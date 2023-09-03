@@ -11,6 +11,8 @@ const decisionRouter = require("./src/routes/decision");
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Helmet helps secure Express apps by setting HTTP response headers.
 app.use(helmet());
 
 // connects to the database
@@ -22,6 +24,8 @@ app.get("/", (_, res) => {
 
 app.use("/api/business", businessRoute);
 app.use("/api/user", userRouter);
+
+// simulated routes
 app.use("/api/balance", balanceRouter);
 app.use("/api/decision", decisionRouter);
 
