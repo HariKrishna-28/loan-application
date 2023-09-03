@@ -1,20 +1,23 @@
 import React from 'react'
+import { BalanceSheetType } from '../types/Business'
+
 
 interface Props {
-    data: any
+    data: BalanceSheetType[]
 }
 const Sheet: React.FC<Props> = ({ data }) => {
     return (
-        <div>
-            <div className="overflow-x-auto">
+        <div className='p-5'>
+            <div className="overflow-x-auto border-2 rounded">
+                <p className='text-3xl font-bold p-2'>Balance sheet</p>
                 <table className="table table-zebra">
                     {/* head */}
                     <thead>
                         <tr>
-                            <th></th>
                             <th>Year</th>
                             <th>Month</th>
-                            <th>ProfitOrLoss</th>
+                            <th>Profit/Loss</th>
+                            <th>Assets</th>
                         </tr>
                     </thead>
                     <tbody>

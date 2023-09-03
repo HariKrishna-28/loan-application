@@ -14,3 +14,10 @@ export interface BalanceSheetRequestType {
   email: string;
   businessId: string;
 }
+
+export interface BalanceSheetType {
+  year: number;
+  month: number;
+  profitOrLoss: number;
+  assetsValue: number;
+}
