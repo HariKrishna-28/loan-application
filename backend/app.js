@@ -5,6 +5,7 @@ const helmet = require("helmet");
 
 const businessRoute = require("./src/routes/business");
 const userRouter = require("./src/routes/users");
+const balanceRouter = require("./src/routes/balance");
 
 const app = express();
 app.use(cors());
@@ -20,6 +21,7 @@ app.get("/", (_, res) => {
 
 app.use("/api/business", businessRoute);
 app.use("/api/user", userRouter);
+app.use("/api/balance", balanceRouter);
 
 app.listen(process.env.PORT || 5000, () => {
   console.log("Server up");
