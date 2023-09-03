@@ -23,3 +23,12 @@ export function GET_BALANCE_SHEET(data: BalanceSheetRequestType) {
   };
   return axios(config);
 }
+
+export function GET_DECISION_DATA(data: any) {
+  const config: AxiosRequestConfig = {
+    url: `${URL}/decision`,
+    data: data,
+    method: "post",
+  };
+  return axios(config);
+}

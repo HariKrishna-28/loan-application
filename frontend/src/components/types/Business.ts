@@ -21,3 +21,10 @@ export interface BalanceSheetType {
   profitOrLoss: number;
   assetsValue: number;
 }
+
+export interface DecisionEngineType {
+  name: string;
+  preAssessment: number;
+  profitLossSummary: number;
+  yearEst: number;
+}
