@@ -130,3 +130,8 @@ Decision Engine: Once the balance sheet is generated, the user can review it and
 - **Decision Making**: The loan application is redirected to the decision engine (simulated), which evaluates the application based on predefined criteria and generates an application outcome.
 
 ## Output walkthrough
+
+https://github.com/HariKrishna-28/loan-application/assets/69629411/76c41d49-3af3-4d17-877c-adfff9e9a6e0
+
+
+
