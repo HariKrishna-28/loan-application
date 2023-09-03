@@ -18,7 +18,7 @@ const Form: React.FC<Props> = ({ exportData }) => {
     const [userName, setuserName] = useState<string>("")
     const [email, setEmail] = useState<string>("")
     const [loanAmount, setLoanAmount] = useState<number>(0)
-    const [newBusiness, setBusiness] = useState<BalanceSheetRequestType | null>({ name: "second", businessId: "64f4280b8c6ede56f6bfa6a4", email: "check@gmail.com" })
+    const [newBusiness, setBusiness] = useState<BalanceSheetRequestType | null>(null)
 
     const [error, setError] = useState<string | null>()
 
@@ -38,9 +38,16 @@ const Form: React.FC<Props> = ({ exportData }) => {
                 loanAmount: loanAmount,
             }
             const res = await REGISTER_LOAN(data)
-            setBusiness(res.data)
-            if (newBusiness)
-                exportData(newBusiness)
+            const resData: BalanceSheetRequestType = {
+                businessId: res.data._id,
+                email: res.data.userData.email,
+                name: res.data.userData.name,
+            }
+            setBusiness(resData)
+            exportData(resData)
+            // setBusiness(res.data)
+            // if (newBusiness)
+            //     exportData(newBusiness)
 
         } catch (error: any) {
             setError(error.message)

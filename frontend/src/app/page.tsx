@@ -10,14 +10,14 @@ export default function Home() {
   const [balanceSheet, setBalanceSheet] = useState<BalanceSheetType[] | null>(null)
   const [load, setLoad] = useState(false)
   const [showForm, setShowForm] = useState(true)
-  const [newBusiness, setBusiness] = useState<BalanceSheetRequestType | null>({ name: "newUser", businessId: "64f41d3f5f7daeacf9be7d4c", email: "user123@gmail.com" })
+  const [newBusiness, setBusiness] = useState<BalanceSheetRequestType | null>(null)
 
 
-  const getBalanceSheet = async () => {
+  const getBalanceSheet = async (data: BalanceSheetRequestType) => {
     setLoad(true)
     try {
       // @ts-ignore  // already handled in the use effect
-      const res = await GET_BALANCE_SHEET(newBusiness)
+      const res = await GET_BALANCE_SHEET(data)
       console.log(res.data)
       setBalanceSheet(res.data.balanceSheet)
     } catch (error: any) {
@@ -26,11 +26,11 @@ export default function Home() {
     setLoad(false)
   }
 
-  useEffect(() => {
-    if (!newBusiness) return
-    getBalanceSheet()
+  // useEffect(() => {
+  //   if (!newBusiness) return
+  //   getBalanceSheet()
 
-  }, [newBusiness])
+  // }, [newBusiness])
 
   return (
     <main>
@@ -38,6 +38,7 @@ export default function Home() {
         showForm &&
         < Form exportData={(data) => {
           setBusiness(data)
+          getBalanceSheet(data)
           setShowForm(false)
         }
         } />
@@ -52,20 +53,24 @@ export default function Home() {
           :
           <div>
             {balanceSheet &&
-              <Sheet
-                data={balanceSheet}
-              />
+              <>
+
+                <Sheet
+                  data={balanceSheet}
+                />
+              </>
             }
 
-            <div className="flex flex-row gap-3 items-center justify-center">
-              <button className="btn btn-neutral">
-                submit application
-              </button>
-
-            </div>
+            {balanceSheet &&
+              <div className="flex flex-row gap-3 items-center justify-center">
+                <button className="btn btn-neutral">
+                  submit application
+                </button>
+              </div>
+            }
           </div>
-
         }
+
       </div>
 
 
