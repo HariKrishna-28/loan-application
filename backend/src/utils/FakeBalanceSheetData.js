@@ -1,4 +1,4 @@
-function generateFakeData(length = 5) {
+function generateFakeData(length = 12) {
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
   const data = [];
@@ -15,7 +15,7 @@ function generateFakeData(length = 5) {
     currentDate.setMonth(currentDate.getMonth() - 1);
   }
 
-  return data;
+  return data.sort((a, b) => b.month - a.month);
 }
 
 module.exports = generateFakeData;
