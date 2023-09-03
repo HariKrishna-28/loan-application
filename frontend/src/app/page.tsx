@@ -5,7 +5,7 @@ import Sheet from "@/components/BalanceSheet/Sheet"
 import Decision from "@/components/Decision/Decision"
 import Form from "@/components/LoanForm/Form"
 import { BalanceSheetRequestType, BalanceSheetType, DecisionEngineType } from "@/components/types/Business"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 export default function Home() {
   const [balanceSheet, setBalanceSheet] = useState<BalanceSheetType[] | null>()
@@ -14,6 +14,7 @@ export default function Home() {
   const [newBusiness, setBusiness] = useState<any | null>(null)
   const [decisionData, setDecisionData] = useState<DecisionEngineType | null>(null)
 
+  // receives a balance sheet with random values, simulates the accounting provider
   const getBalanceSheet = async (data: BalanceSheetRequestType) => {
     setLoad(true)
     try {
@@ -26,6 +27,7 @@ export default function Home() {
     setLoad(false)
   }
 
+  // makes a call to get decision data, simulates the decision engine
   const handleSubmit = async () => {
     try {
       const res = await GET_DECISION_DATA(newBusiness)
@@ -35,6 +37,7 @@ export default function Home() {
     }
   }
 
+  // clears up all the data
   const handleCancel = () => {
     setShowForm(true)
     setBalanceSheet(null)
@@ -45,6 +48,7 @@ export default function Home() {
   return (
     <main>
       {
+        // Only show form initially when the user need to register for loan
         showForm &&
         < Form exportData={(data) => {
           setBusiness(data)
@@ -55,16 +59,16 @@ export default function Home() {
       }
 
       <div className="flex min-h-screen flex-col ">
-
+        {/* Loading component to display during api calls */}
         {load ?
           <div className="flex text-3xl font-bold flex-col items-center justify-center h-screen">
             Fetching balance sheet please wait
           </div>
           :
           <div>
-            {balanceSheet &&
+            {
+              balanceSheet &&
               <>
-
                 <Sheet
                   data={balanceSheet}
                 />
