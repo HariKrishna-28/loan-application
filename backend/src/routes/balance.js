@@ -4,7 +4,7 @@ const Business = require("../models/Business");
 const mongoose = require("mongoose");
 const ObjectId = mongoose.Types.ObjectId;
 
-router.get("/balance-sheet", async (req, res) => {
+router.post("/balance-sheet", async (req, res) => {
   try {
     const AccountingProviderData = generateFakeData();
 

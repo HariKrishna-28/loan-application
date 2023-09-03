@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { BusinessType } from '../types/Business'
+import { BalanceSheetRequestType, BusinessType } from '../types/Business'
 import { accountingProviders } from '../Constants/AccountingProviderOptions'
+import { REGISTER_LOAN } from '@/api/LoanAPI'
+import Sheet from '../BalanceSheet/Sheet'
 
-const Form = () => {
+interface Props {
+    exportData: (data: BalanceSheetRequestType) => void
+}
+
+const Form: React.FC<Props> = ({ exportData }) => {
     const [load, setLoad] = useState(false)
     const [name, setName] = useState<string>("")
     const [year, setYear] = useState<string>("")
@@ -11,6 +17,8 @@ const Form = () => {
     const [provider, setProvider] = useState<string>("")
     const [userName, setuserName] = useState<string>("")
     const [email, setEmail] = useState<string>("")
+    const [loanAmount, setLoanAmount] = useState<number>(0)
+    const [newBusiness, setBusiness] = useState<BalanceSheetRequestType | null>({ name: "second", businessId: "64f4280b8c6ede56f6bfa6a4", email: "check@gmail.com" })
 
     const [error, setError] = useState<string | null>()
 
@@ -26,10 +34,14 @@ const Form = () => {
                 userData: {
                     name: userName,
                     email: email
-                }
+                },
+                loanAmount: loanAmount,
             }
-            // const res = await REGISTER_LOAN(data)
-            // console.log(res.data)
+            const res = await REGISTER_LOAN(data)
+            setBusiness(res.data)
+            if (newBusiness)
+                exportData(newBusiness)
+
         } catch (error: any) {
             setError(error.message)
         }
@@ -41,6 +53,8 @@ const Form = () => {
         e.preventDefault()
         initialiseBusiniess()
     }
+
+
 
 
     return (
@@ -129,11 +143,24 @@ const Form = () => {
                             ))}
                         </select>
 
+                        <input
+                            type="number"
+                            onChange={(e) => setLoanAmount(parseInt(e.target.value))}
+                            required
+                            placeholder="Loan amount"
+                            className="input input-bordered w-[350px]" />
                     </div>
                     <button type="submit" className="btn btn-neutral mt-3">
                         Request balance sheet
                     </button>
                 </form>
+                {/* {
+                    newBusiness &&
+                    <button className="btn btn-neutral mt-3">
+                        Go to balance sheet
+                    </button>
+                } */}
+
             </div>
 
 
