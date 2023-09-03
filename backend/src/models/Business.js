@@ -18,6 +18,10 @@ const businessSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    loanAmount: {
+      type: Number,
+      required: true,
+    },
     userData: {
       email: {
         type: String,

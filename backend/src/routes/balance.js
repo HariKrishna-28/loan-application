@@ -19,12 +19,13 @@ router.get("/balance-sheet", async (req, res) => {
       res.status(200).json({
         name: name,
         email: email,
-        balanceSheet: AccountingProviderData,
         business: {
           name: business.name,
           yearEst: business.yearEst,
           profitLossSummary: business.profitLossSummary,
+          loanAmount: business.loanAmount,
         },
+        balanceSheet: AccountingProviderData,
       });
     }
   } catch (error) {
